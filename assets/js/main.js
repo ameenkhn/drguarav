@@ -127,6 +127,22 @@ function initYoutubePopup() {
 }
 initYoutubePopup();
 //========== VIDEO POPUP ENDS ============= //
+
+//========== GALLERY LIGHTBOX STARTS ============= //
+function initGalleryPopup() {
+  var groups = $(".row").has(".cnsc-gallery__item");
+  groups.each(function () {
+    $(this).magnificPopup({
+      delegate: ".cnsc-gallery__link",
+      type: "image",
+      gallery: { enabled: true },
+      mainClass: "mfp-fade",
+      image: { titleSrc: function (item) { return item.el.find("img").attr("alt"); } }
+    });
+  });
+}
+initGalleryPopup();
+//========== GALLERY LIGHTBOX ENDS ============= //
 AOS.init({
   duration: 450,
   offset: 60,

@@ -4,6 +4,47 @@
    ========================================================================== */
 
 /* ==========================================================================
+   Floating WhatsApp "Book Appointment" button (bottom-right, every page)
+   ========================================================================== */
+.mh-wa-float{
+  position:fixed;right:30px;bottom:30px;z-index:10000;
+  display:inline-flex;align-items:center;
+  height:60px;border-radius:30px;
+  background:#25D366;color:#fff;text-decoration:none;
+  box-shadow:0 12px 30px rgba(37,211,102,.45);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.mh-wa-float i{
+  font-size:26px;width:44px;height:44px;flex:0 0 auto;margin:8px;
+  display:flex;align-items:center;justify-content:center;
+  background:#fff;color:#25D366;border-radius:50%;
+}
+.mh-wa-float__label{
+  color:#fff;font-size:15px;font-weight:700;white-space:nowrap;
+  max-width:0;opacity:0;overflow:hidden;
+  transition:max-width .35s ease,opacity .25s ease,padding .35s ease;
+}
+.mh-wa-float:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(37,211,102,.55)}
+.mh-wa-float:hover .mh-wa-float__label{max-width:200px;opacity:1;padding-right:24px}
+/* gentle attention pulse */
+.mh-wa-float::after{
+  content:"";position:absolute;inset:0;border-radius:30px;pointer-events:none;
+  animation:mhWaPulse 2.4s ease-out infinite;
+}
+@keyframes mhWaPulse{
+  0%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}
+  70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}
+  100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
+}
+@media (max-width:575px){
+  .mh-wa-float{right:18px;bottom:18px;height:56px}
+  .mh-wa-float i{width:42px;height:42px;margin:7px;font-size:23px}
+}
+@media (prefers-reduced-motion:reduce){
+  .mh-wa-float::after{animation:none}
+}
+
+/* ==========================================================================
    On-brand call-to-action panel (.cnsc-cta) — replaces the template's
    cta4-section-area banner on the homepage and services page.
    ========================================================================== */
@@ -50,12 +91,12 @@
 .cnsc-cta__btn-ghost:hover{color:#0b5e5b;background:#fff;border-color:#fff}
 .cnsc-cta__btn-ghost svg path{fill:currentColor}
 .cnsc-cta__btn-video{
-  display:inline-flex;align-items:center;gap:9px;color:#fff;font-size:16px;font-weight:700;
-  padding:15px 28px;border-radius:40px;background:rgba(255,255,255,.14);
-  border:1.6px solid rgba(255,255,255,.55);transition:all .25s ease;
+  display:inline-flex;align-items:center;gap:9px;color:#0b5e5b;font-size:16px;font-weight:700;
+  padding:15px 28px;border-radius:40px;background:#fff;
+  border:1.6px solid #fff;box-shadow:0 12px 26px rgba(0,0,0,.14);transition:transform .25s ease,box-shadow .25s ease;
 }
-.cnsc-cta__btn-video i{color:#fff;transition:color .25s ease}
-.cnsc-cta__btn-video:hover{color:#0b5e5b;background:#fff;border-color:#fff;transform:translateY(-2px)}
+.cnsc-cta__btn-video i{color:#0b5e5b;transition:color .25s ease}
+.cnsc-cta__btn-video:hover{color:#0b5e5b;background:#fff;border-color:#fff;transform:translateY(-2px);box-shadow:0 18px 34px rgba(0,0,0,.2)}
 .cnsc-cta__btn-video:hover i{color:#0b5e5b}
 
 .cnsc-cta__media{position:relative;z-index:2;text-align:center}
@@ -119,14 +160,15 @@
 
 /* ----- Beautified preloader ----- */
 .cs_preloader{background:linear-gradient(180deg,#f1faf9 0%,#ecf8f7 100%) !important}
-.cs_preloader .cs_wave_first{position:relative;display:inline-block}
+.cs_preloader .cs_wave_first{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
 .cs_preloader .cs_wave_first img{
   position:relative;z-index:2;border-radius:22px;
   box-shadow:0 20px 45px rgba(11, 94, 91,.28);
 }
 .cs_preloader .cs_wave_first p{
-  font-weight:600 !important;letter-spacing:.4px;color:#0b5e5b !important;margin-top:26px !important;
+  font-weight:600 !important;letter-spacing:.4px;color:#0b5e5b !important;margin-top:8px !important;
 }
+.cs_preloader .cs_wave_first .mh-brand--stack{gap:8px}
 
 /* Responsive video embeds (testimonials / media) */
 .video-responsive{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
@@ -237,6 +279,32 @@
   background:linear-gradient(135deg,#0e9b96,#0b5e5b);color:#fff;border-color:transparent;transform:translateY(-3px);
 }
 .cnsc-footer__social .mh-x-icon{width:15px;height:15px;display:block}
+
+/* social icons inside the contact info list */
+.ci-social{display:flex;gap:10px;margin-top:9px;flex-wrap:wrap}
+.ci-social a{
+  width:40px;height:40px;border-radius:50%;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#fff;color:#0b5e5b;border:1px solid #cdeae7;font-size:16px;
+  box-shadow:0 6px 16px rgba(13,38,76,.06);transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s ease;
+}
+.ci-social a:hover{
+  background:linear-gradient(135deg,#0e9b96,#0b5e5b);color:#fff;border-color:transparent;transform:translateY(-3px);
+}
+.ci-social .mh-x-icon{width:14px;height:14px;display:block}
+
+/* social icons in the doctor profile card */
+.docx-social{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.docx-social a{
+  width:42px;height:42px;border-radius:50%;flex:0 0 auto;
+  display:flex;align-items:center;justify-content:center;
+  background:#f1faf9;color:#0b5e5b;border:1px solid #e9f6f5;font-size:16px;
+  transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s ease;
+}
+.docx-social a:hover{
+  background:linear-gradient(135deg,#0e9b96,#0b5e5b);color:#fff;border-color:transparent;transform:translateY(-2px);
+}
+.docx-social .mh-x-icon{width:14px;height:14px;display:block}
 
 /* --- Columns --- */
 .cnsc-footer__grid{
@@ -458,7 +526,42 @@
 .cnsc-trust-card p{color:#5a6b73;font-size:14.5px;line-height:1.6;margin:0}
 
 /* --- FAQ accordion (native, no JS) --- */
+/* ============================================================
+   Welcome popup (homepage on load)
+   ============================================================ */
+.mh-popup{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:20px}
+.mh-popup.is-open{display:flex}
+.mh-popup__overlay{position:absolute;inset:0;background:rgba(13,38,76,.62);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.mh-popup__box{position:relative;max-width:620px;width:100%;animation:mhPopIn .35s ease}
+.mh-popup__link{display:block;line-height:0}
+.mh-popup__box img{display:block;max-width:100%;max-height:90vh;width:100%;height:auto;margin:0 auto;border-radius:16px;box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.mh-popup__close{
+  position:absolute;top:-14px;right:-14px;width:38px;height:38px;border-radius:50%;
+  border:none;background:#fff;color:#0f2230;font-size:24px;line-height:1;cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,0,0,.28);display:flex;align-items:center;justify-content:center;
+  transition:transform .25s ease,background .2s ease;z-index:2;
+}
+.mh-popup__close:hover{transform:rotate(90deg);background:#f1f5f9}
+@keyframes mhPopIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+@media (max-width:520px){
+  .mh-popup{padding:16px}
+  .mh-popup__close{top:-10px;right:-10px;width:34px;height:34px;font-size:22px}
+}
+
 .cnsc-faq{max-width:880px;margin:0 auto}
+/* two parallel columns */
+.cnsc-faq--2col{max-width:1180px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.cnsc-faq__col{min-width:0}
+.cnsc-faq__col-title{
+  font-size:18px;font-weight:700;color:#0f2230;letter-spacing:-.3px;
+  display:flex;align-items:center;gap:10px;margin:0 0 18px;padding-bottom:14px;
+  border-bottom:2px solid #e7eef0;
+}
+.cnsc-faq__col-title i{color:#0b5e5b;font-size:17px}
+@media (max-width:991px){
+  .cnsc-faq--2col{grid-template-columns:1fr;gap:0}
+  .cnsc-faq__col + .cnsc-faq__col{margin-top:30px}
+}
 .cnsc-faq__item{
   background:#fff;border:1px solid #eef2f7;border-radius:14px;margin-bottom:16px;overflow:hidden;
   box-shadow:0 8px 24px rgba(13,38,76,.05);transition:box-shadow .3s ease;
@@ -476,7 +579,7 @@
 /* --- Gallery hover --- */
 .cnsc-gallery__item{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(13,38,76,.08)}
 .cnsc-gallery__item img{width:100%;height:auto;display:block;transition:transform .5s ease}
-.cnsc-gallery__item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11, 94, 91,0) 40%,rgba(13,38,76,.55));opacity:0;transition:opacity .4s ease}
+.cnsc-gallery__item::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(11, 94, 91,0) 40%,rgba(13,38,76,.55));opacity:0;transition:opacity .4s ease}
 .cnsc-gallery__item:hover img{transform:scale(1.08)}
 .cnsc-gallery__item:hover::after{opacity:1}
 
@@ -1585,27 +1688,131 @@
 .vl-header-action-item .vl-offcanvas-toggle:hover{background:#0e9b96;color:#fff;border-color:#0e9b96}
 
 /* ============================================================
-   Gallery → masonry: every photo shows in full (natural aspect),
-   no cropping, no letterbox/background. Image rows only.
+   Gallery → uniform grid: equal-size thumbnails cropped to a
+   consistent 4:3 so every row lines up edge-to-edge. No ragged
+   masonry columns, no whitespace gaps.
    ============================================================ */
 .sec-w .row:has(.cnsc-gallery__item){
-  display:block;
-  column-count:3;
-  column-gap:24px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  align-items:stretch;
 }
 .sec-w .row:has(.cnsc-gallery__item) > [class*="col-"]{
-  width:100%;max-width:100%;flex:0 0 100%;
-  padding:0;margin:0 0 24px;
-  display:inline-block;vertical-align:top;
-  break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;
+  width:auto;max-width:none;flex:none;
+  padding:0;margin:0 !important;
 }
-.sec-w .cnsc-gallery__item{height:auto}
-.sec-w .cnsc-gallery__item img{height:auto;width:100%;display:block}
+.sec-w .cnsc-gallery__item{height:100%}
+.sec-w .cnsc-gallery__link{display:block;height:100%;cursor:zoom-in}
+.sec-w .cnsc-gallery__item img{
+  width:100%;height:100%;display:block;
+  aspect-ratio:4/3;object-fit:cover;
+}
+
+/* breathing room before each new section (every group header that
+   follows an image grid — i.e. all but the first) */
+.sec-w .row:has(.cnsc-gallery__item) + .row:has(.mh-gallery-group){
+  margin-top:64px;
+}
 
 @media (max-width:991px){
-  .sec-w .row:has(.cnsc-gallery__item){column-count:2;column-gap:18px}
-  .sec-w .row:has(.cnsc-gallery__item) > [class*="col-"]{margin-bottom:18px}
+  .sec-w .row:has(.cnsc-gallery__item){grid-template-columns:repeat(2,1fr);gap:18px}
+  .sec-w .row:has(.cnsc-gallery__item) + .row:has(.mh-gallery-group){margin-top:44px}
 }
 @media (max-width:575px){
-  .sec-w .row:has(.cnsc-gallery__item){column-count:1}
+  .sec-w .row:has(.cnsc-gallery__item){grid-template-columns:repeat(2,1fr);gap:12px}
+  .sec-w .row:has(.cnsc-gallery__item) + .row:has(.mh-gallery-group){margin-top:36px}
+}
+
+/* ==========================================================================
+   MOBILE FOOTER + OFFCANVAS MENU — consolidated professional redesign.
+   Placed last so it supersedes the earlier conflicting @media blocks.
+   Goals: no dead/empty space, tight vertical rhythm, on-brand teal theme.
+   ========================================================================== */
+@media (max-width:767px){
+  /* ---------------- FOOTER ---------------- */
+  .cnsc-footer{padding:40px 0 18px !important;text-align:left !important}
+  .cnsc-footer__grid{
+    display:grid !important;grid-template-columns:1fr 1fr !important;
+    gap:24px 18px !important;text-align:left !important;align-items:start;
+  }
+  /* Brand — full width, centred, soft divider under it */
+  .cnsc-footer__brand{
+    grid-column:1 / -1 !important;text-align:center !important;
+    padding-bottom:22px !important;margin-bottom:0 !important;
+    border-bottom:1px solid rgba(11,31,51,.08) !important;
+  }
+  .cnsc-footer__brand .cnsc-footer__logo{margin:0 auto 14px !important;max-width:82px !important}
+  .cnsc-footer__brand p{margin:0 auto 16px !important;max-width:320px !important;font-size:14px !important;line-height:1.6 !important}
+  .cnsc-footer__join{margin:0 auto !important}
+  /* Two compact link columns side-by-side */
+  .cnsc-footer__col{text-align:left !important}
+  .cnsc-footer__col h4{font-size:15px !important;margin:0 0 12px !important;padding-bottom:9px !important}
+  .cnsc-footer__col h4::after{left:0 !important;transform:none !important;width:26px !important}
+  .cnsc-footer__col ul li{margin-bottom:9px !important}
+  .cnsc-footer__col ul li a{font-size:13.5px !important;line-height:1.4}
+  /* Contact — full width, tidy cards + social */
+  .cnsc-footer__contact{
+    grid-column:1 / -1 !important;padding-top:20px !important;
+    border-top:1px solid rgba(11,31,51,.08) !important;
+  }
+  .cnsc-footer__contact ul{display:flex !important;flex-direction:column;gap:10px !important;margin:0 0 16px !important}
+  .cnsc-footer__contact ul li{
+    margin:0 !important;max-width:none !important;justify-content:flex-start !important;text-align:left !important;
+    background:#fff;border:1px solid #e7eef6;border-radius:13px;padding:12px 14px !important;
+    box-shadow:0 8px 20px rgba(13,38,76,.05);
+  }
+  .cnsc-footer__contact .ci-ic{width:36px !important;height:36px !important;font-size:14px !important}
+  .cnsc-footer__social{justify-content:flex-start !important;gap:10px !important;margin:0 !important}
+  .cnsc-footer__social a{width:40px;height:40px;font-size:16px}
+  /* Bottom bar — centred, compact */
+  .cnsc-footer__bottom{
+    flex-direction:column !important;align-items:center !important;gap:8px !important;
+    text-align:center !important;margin-top:24px !important;padding-top:16px !important;
+  }
+  .cnsc-footer__bottom p{font-size:12.5px !important}
+
+  /* ---------------- OFFCANVAS MENU ---------------- */
+  /* flow content top→bottom (kills the big mid-panel empty gap) */
+  .vl-offcanvas{overflow-y:auto !important}
+  .vl-offcanvas-wrapper{min-height:auto !important;height:auto !important;display:block !important}
+  .vl-offcanvas .vl-offcanvas-header{padding:15px 18px !important}
+  .vl-offcanvas-brand img{height:46px !important}
+  .vl-offcanvas-menu{padding:6px 18px 0 !important}
+  .vl-offcanvas-menu ul li a{padding:13px 2px !important;font-size:15.5px !important}
+  .vl-offcanvas-cta{padding:14px 18px 4px !important;gap:10px !important;margin-top:6px}
+  .moff-btn{padding:13px 18px !important;font-size:14.5px !important}
+  .vl-offcanvas-contact{
+    margin-top:0 !important;padding:14px 18px 16px !important;gap:9px !important;
+    border-top:1px solid #eef4f4;
+  }
+  .moff-contact{padding:11px 13px !important;border-radius:12px}
+  /* compact social row at the foot of the menu */
+  .moff-social{display:flex;justify-content:center;gap:10px;padding:6px 18px 26px;flex-wrap:wrap}
+  .moff-social a{
+    width:42px;height:42px;border-radius:50%;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;
+    background:#f1faf9;border:1px solid #e9f6f5;color:#0b5e5b;font-size:16px;
+    transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s ease;
+  }
+  .moff-social a:hover{background:linear-gradient(135deg,#0e9b96,#0b5e5b);color:#fff;border-color:transparent;transform:translateY(-2px)}
+  .moff-social .mh-x-icon{width:14px;height:14px;display:block}
+}
+@media (max-width:360px){
+  .cnsc-footer__col ul li a{font-size:13px !important}
+}
+
+/* ==========================================================================
+   Footer brand logo on mobile — clean centred logo + name stack.
+   The fixed max-width clipped the wider "DIABETES & OBESITY CARE" text and
+   broke the shared centre axis; make it a content-sized centred column.
+   ========================================================================== */
+@media (max-width:767px){
+  .cnsc-footer__brand .cnsc-footer__logo{
+    display:inline-flex !important;flex-direction:column;align-items:center;gap:9px;
+    width:auto !important;max-width:none !important;margin:0 auto 16px !important;
+  }
+  .cnsc-footer__brand .cnsc-footer__logo .mh-brand__mark{width:60px !important;height:60px !important}
+  .cnsc-footer__brand .cnsc-footer__logo .mh-brand__name{align-items:center !important;text-align:center}
+  .cnsc-footer__brand .cnsc-footer__logo .mh-brand__name b{line-height:1.05}
 }
