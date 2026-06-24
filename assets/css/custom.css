@@ -480,6 +480,8 @@
 .cnsc-svc-card h3{font-size:21px;font-weight:700;color:#0f2230;margin:0 0 12px;letter-spacing:-.3px}
 .cnsc-svc-card p{color:#5a6b73;font-size:15.5px;line-height:1.65;margin:0}
 .cnsc-svc-card__list{list-style:none;margin:18px 0 0;padding:0}
+.cnsc-svc-card__note{margin:18px 0 0;font-size:14px;font-weight:600;color:#0f2230}
+.cnsc-svc-card__note + .cnsc-svc-card__list{margin-top:9px}
 .cnsc-svc-card__list li{position:relative;padding-left:26px;margin-bottom:9px;color:#4a5763;font-size:15px;line-height:1.5}
 .cnsc-svc-card__list li i{position:absolute;left:0;top:4px;font-size:13px}
 .cnsc-svc-card.is-priya::before{background:linear-gradient(90deg,#0e9b96,#7fcec9)}

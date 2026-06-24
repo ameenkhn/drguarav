@@ -14513,8 +14513,18 @@ body {
   text-transform: uppercase;
 }
 .slider4-section-area .marquee-wrap .marquee-text .brand-single-box h3 img {
-  margin: -10px 8px 0 16px;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin: -4px 8px 0 16px;
   filter: brightness(0) invert(1);
+}
+@media (max-width: 767px) {
+  .slider4-section-area .marquee-wrap .marquee-text .brand-single-box h3 img {
+    width: 18px;
+    height: 18px;
+    margin: -2px 6px 0 12px;
+  }
 }
 
 .slider5-section-area {
